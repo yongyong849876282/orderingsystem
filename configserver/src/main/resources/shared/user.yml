@@ -1,8 +1,8 @@
 server:
-  port: 8040
+  port: 8050
 spring:
   application:
-    name: order
+    name: user
   datasource:
     name: orderingsystem
     url: jdbc:mysql://129.28.167.240:3306/orderingsystem?useUnicode=true&characterEncoding=UTF-8
@@ -16,4 +16,4 @@ eureka:
     prefer-ip-address: true
 mybatis:
   mapper-locations: classpath:mapping/*.xml
-  type-aliases-package: com.southwind.entity
+  # type-aliases-package: com.southwind.entity
