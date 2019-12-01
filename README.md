@@ -1,11 +1,13 @@
 ### 项目概述
 
+订餐系统（个人练习项目）
 
 本项目分为客户端和后台管理系统两个界面，客户端针对普通用户，功能包括用户登陆、用户退出、菜品订购、我的订单。
 
 后台管理系统针对管理员，功能包括管理员登陆、管理员退出、添加菜品、查询菜品、修改菜品、删除菜品、订单处理、添加用户、查询用户、删除用户。
 
-需求了解完之后，接下来设计系统架构，首先分配出4个服务提供者，account、menu、order、user。
+
+首先分配出4个服务提供者，account、menu、order、user。
 
 account 提供账户服务：用户和管理员登陆。
 
@@ -17,7 +19,14 @@ user 提供用户服务：添加用户、查询用户、删除用户。
 
 本系统共有8个模块组成，包括注册中心，配置中心，Git 仓库配置信息，服务消费者，4个服务提供者。
 
-系统架构搞清楚之后，接下来开始创建工程。
+
+首页为：http://127.0.0.1:8030/index
+
+configserver 配置中心
+registrycenter 注册中心
+yyong-microservice-gateway-80 网关 
+
+创建工程。
 
 pom.xml 引入 Spring Boot 和 Spring Cloud 相关依赖，其中 JAXB API 的依赖只针对 JDK 9 以上版本，如果你是 JDK 9 以下版本，不需要配置。
 
@@ -40,10 +49,7 @@ pom.xml 引入 Spring Boot 和 Spring Cloud 相关依赖，其中 JAXB API 的�
     </parent>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+        
         <!-- 解决JDK 9以上版本没有JAXB API的问题 -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
