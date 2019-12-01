@@ -1,0 +1,69 @@
+server:
+  port: 80
+spring:
+  application:
+    name: yyong-gateway
+  profiles:
+    active: dev
+
+
+#当出现相同名字的类进行注册时，准许覆盖注册
+
+  #main:
+  #  allow-bean-definition-overriding: true
+---
+# dev环境
+
+spring:
+  profiles: dev
+  redis:
+    host: 129.28.167.240
+    pool: 6379
+    database: 0
+  cloud:
+    gateway:
+      routes:
+      - id: clientfeign
+        uri: lb://clientfeign
+        #uri: http://127.0.0.1:8401
+        predicates:
+        - Path=/clientfeign/**
+        filters:
+        - name: RequestRateLimiter
+          args:
+            # 令牌桶每秒填充平均速率
+            redis-rate-limiter.replenishRate: 1
+            # 令牌桶的上限
+            redis-rate-limiter.burstCapacity: 3
+            # 使用SpEL从容器中获取对象
+            key-resolver: '#{@pathKeyResolver}'
+        - RewritePath=/clientfeign/(?<segment>.*),/$\{segment}
+      #配置自动的根据微服务名称进行路由转发
+        #    discovery:
+          #      locator:
+          #        enabled: true #开启根据服务名称自动转发
+    #       lower-case-service-id: true #微服务名称已小写形式呈现
+
+eureka:
+  instance:
+    instance-id: gateway
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+
+---
+# test环境
+
+spring:
+  profiles: test
+
+---
+# prod环境
+
+spring:
+  profiles: prod
+server:
+  port: 8762
+
+

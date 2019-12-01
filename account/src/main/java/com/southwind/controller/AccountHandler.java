@@ -23,10 +23,10 @@ public class AccountHandler {
         Account account = null;
         switch (type){
             case "user":
-                account = userRepository.login(username, password);
+                account = userRepository.userlogin(username, password);
                 break;
             case "admin":
-                account = adminRepository.login(username, password);
+                account = adminRepository.adminlogin(username, password);
                 break;
         }
         return account;

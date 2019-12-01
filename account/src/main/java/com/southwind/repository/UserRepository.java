@@ -1,7 +1,10 @@
 package com.southwind.repository;
 
 import com.southwind.entity.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserRepository {
-    public User login(String username,String password);
+
+    User userlogin(String username,String password);
 }

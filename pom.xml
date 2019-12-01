@@ -16,6 +16,7 @@
         <module>clientfeign</module>
         <module>order</module>
         <module>user</module>
+        <module>yyong-microservice-gateway-80</module>
     </modules>
 
     <!-- 引入Spring Boot依赖 -->

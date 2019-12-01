@@ -1,9 +1,11 @@
 package com.southwind.repository;
 
 import com.southwind.entity.Menu;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface MenuRepository {
     public List<Menu> findAll(int index,int limit);
     public int count();

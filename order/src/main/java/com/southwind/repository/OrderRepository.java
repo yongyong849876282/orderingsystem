@@ -1,9 +1,11 @@
 package com.southwind.repository;
 
 import com.southwind.entity.Order;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface OrderRepository {
     public void save(Order order);
     public List<Order> findAllByUid(long uid,int index,int limit);
