@@ -27,7 +27,7 @@ spring:
         uri: lb://clientfeign
         #uri: http://127.0.0.1:8401
         predicates:
-        - Path=/**
+        - Path=/clientfeign/**
         filters:
         - name: RequestRateLimiter
           args:
@@ -37,7 +37,7 @@ spring:
             redis-rate-limiter.burstCapacity: 3
             # 使用SpEL从容器中获取对象
             key-resolver: '#{@pathKeyResolver}'
-        #- RewritePath=/clientfeign/(?<segment>.*),/$\{segment}
+        - RewritePath=/clientfeign/(?<segment>.*),/$\{segment}
       #配置自动的根据微服务名称进行路由转发
         #      discovery:
           #        locator:

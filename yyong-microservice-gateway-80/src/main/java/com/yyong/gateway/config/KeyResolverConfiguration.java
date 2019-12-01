@@ -16,7 +16,7 @@ public class KeyResolverConfiguration {
      * //基于参数
      * @return
      */
-    @Bean
+    @Bean(name = "pathKeyResolver")
     public KeyResolver pathKeyResolver(){
         //自定义的KeyResolver
         return new KeyResolver(){
