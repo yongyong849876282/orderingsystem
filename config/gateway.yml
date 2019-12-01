@@ -22,27 +22,27 @@ spring:
     database: 0
   cloud:
     gateway:
-      routes:
-      - id: clientfeign
-        uri: lb://clientfeign
-        #uri: http://127.0.0.1:8401
-        predicates:
-        - Path=/clientfeign/**
-        filters:
-        - name: RequestRateLimiter
-          args:
-            # 令牌桶每秒填充平均速率
-            redis-rate-limiter.replenishRate: 1
-            # 令牌桶的上限
-            redis-rate-limiter.burstCapacity: 3
-            # 使用SpEL从容器中获取对象
-            key-resolver: '#{@pathKeyResolver}'
-        - RewritePath=/clientfeign/(?<segment>.*),/$\{segment}
+ #     routes:
+  #    - id: clientfeign
+#        uri: lb://clientfeign
+#        #uri: http://127.0.0.1:8401
+#        predicates:
+#        - Path=/clientfeign/**
+ #       filters:
+ #       - name: RequestRateLimiter
+ #         args:
+ #           # 令牌桶每秒填充平均速率
+  #          redis-rate-limiter.replenishRate: 1
+  #          # 令牌桶的上限
+  #          redis-rate-limiter.burstCapacity: 3
+ #           # 使用SpEL从容器中获取对象
+ #           key-resolver: '#{@pathKeyResolver}'
+ #       - RewritePath=/clientfeign/(?<segment>.*),/$\{segment}
       #配置自动的根据微服务名称进行路由转发
-        #    discovery:
-          #      locator:
-          #        enabled: true #开启根据服务名称自动转发
-    #       lower-case-service-id: true #微服务名称已小写形式呈现
+      discovery:
+        locator:
+          enabled: true #开启根据服务名称自动转发
+          lower-case-service-id: true #微服务名称已小写形式呈现
 
 eureka:
   instance:
